@@ -1,7 +1,5 @@
 # theWhiteFox bloggin
 
-[![Netlify Status](https://api.netlify.com/api/v1/badges/37486977-c879-4a5f-9b3f-79b93841b71e/deploy-status)](https://app.netlify.com/sites/thewhitefox/deploys)
-
 [build-a-developer-blog-from-scratch-with-gatsby-and-mdx](https://www.freecodecamp.org/news/build-a-developer-blog-from-scratch-with-gatsby-and-mdx/)
 
 [gatsbyjs createPages](https://www.gatsbyjs.com/docs/node-apis/#createPages)
