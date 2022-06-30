@@ -1,0 +1,203 @@
+---
+title: APIs
+date: 2022-01-02
+published: true
+cover: ./cover.jpg
+---
+
+## Understanding APIs
+API Application Programming Interface allows interfaces to communicate with one another. 
+
+A mobile phone is a perfect real world example of an API it aloows the user to access the functionality of the device through the interface, we can access a Database (DB) with a defined set of endpoints a URL of a server or service API and server requests and responses a more secure way to access data as the endpoint can only throw out certain data.
+
+Below is several ways I have set up and consumed data from APIs.
+
+### Search API
+Basic JS search bar that searchs through a JSON list of appartments. Check out the code here [Github theWhiteFox repo](https://github.com/theWhiteFox/search-appts)
+Built using:
+- [Vanilla JS](http://vanilla-js.com/)
+- [webpack](https://webpack.js.org/)
+- [Sass](https://sass-lang.com/)
+
+```jsx
+/* @ Stephen O'Connor */
+async function getData() {
+    let url = '../../apart-hotel-props.json';
+    try {
+        let res = await fetch(url);
+        return await res.json();
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+async function renderData() {
+    let data = await getData();
+
+    let navigation = [];
+    console.log('Array before push: ' + navigation);
+    let containName = document.querySelector('#nav');
+
+    let cities = '';
+    cities += `<option value="">Choose</option>`;
+    data.forEach(city => {
+        cities += `<option value="${city.name}">${city.name}</option>`;
+    });
+
+    let containCities = document.querySelector('#cities');
+    containCities.innerHTML = cities;
+
+    let appts = '';
+    const selectCities = document.querySelector("#cities");
+    selectCities.addEventListener('change', (event) => {
+        const {
+            value,
+            text
+        } = event.target.options[event.target.selectedIndex]
+        appts = `<option value="">Choose</option>`;
+        // city names
+        data.forEach(city => {
+            // check city name
+            if (city.name === text) {
+                if (navigation.lastIndexOf(value) == -1) {
+                    navigation.splice(0,4)
+                    navigation.push(value);
+                    containName.innerHTML = navigation;
+                }
+                
+                for (i in city.properties) {
+                    appts += `<option value="${city.properties[i].name}">${city.properties[i].name}</option>`;
+                };
+            }
+        });
+        let containAppts = document.querySelector('#appts');
+        containAppts.innerHTML = appts;
+    });
+
+    const selectAppts = document.querySelector("#appts");
+    selectAppts.addEventListener('change', (event) => {
+        const {
+            value,
+            text
+        } = event.target.options[event.target.selectedIndex]
+
+        if (navigation.lastIndexOf(value) == -1) {
+            navigation.splice(1, 1)
+            navigation.push(value);
+            containName.innerHTML = navigation;
+        }
+    });
+    
+    let checkin = document.querySelector('input[name=start]');
+    let checkout = document.querySelector('input[name=end]');
+    const selectSearch = document.querySelector("#search");
+    
+    selectSearch.addEventListener('click', () => {
+        if (navigation.lastIndexOf(checkin.value) == -1) {
+            navigation.splice(2, 1)
+            navigation.push(checkin.value);
+            navigation.splice(3, 2)
+            navigation.push(checkout.value);
+            containName.innerHTML = navigation;
+        }
+
+        let citieNames = '';
+        data.forEach(city => {
+            citieNames = city.name;
+            for (i in city.properties) {
+                result.innerHTML += "";
+                if (navigation[0] === citieNames && navigation[1] === city.properties[i].name) {
+                    const result = document.querySelector("#result");
+                    result.innerHTML = 
+                        '<ul id="result">' +
+                        '<img src="./img/appt-rent.jpg" alt="">' +
+                        '<h2>Yahoo!</h2>' +
+                        '<li> City: ' + citieNames + '</li>' +
+                        '<li>Appt: ' + city.properties[i].name + '</li>' +
+                        '<li>Open Date: ' + city.properties[i]['opening-date'] + '</li></ul>';
+                }
+            };
+        });
+        
+    });
+}
+
+renderData();
+
+```
+
+### Axios ReactJS API with Netlify
+
+[Axios](https://axios-http.com/) promise based HTTP client [Search unsplash netlify app](https://react-search-unsplash.netlify.app). [Unsplash](https://unsplash.com/) API in ReactJS [Github Repo](https://github.com/theWhiteFox/react-basics-advanced)
+
+```jsx
+import axios from 'axios';
+
+export default axios.create({
+    baseURL: 'https://api.unsplash.com',
+      headers: {
+          Authorization: 'Client-ID PASTE'
+      }
+});
+```
+
+### Fetch API 
+[Display User](https://fetch-api-webpack.netlify.app/)
+
+```jsx
+async function renderUsers() {
+    let users = await getUsers();
+    let html = '';
+    users.forEach(user => {
+        let htmlSegment = `
+            <div class="user">
+                <img src="${user.profileURL}">
+                <h2>${user.firstname} ${user.lastname}</h2>
+                <div class="email"><a href="mail:${user.email}">${user.email
+                </a></div>
+            </div>`;
+        html += htmlSegment;
+    });
+
+    let container = document.querySelector('.container');
+    container.innerHTML = html;
+}
+
+renderUsers();
+```
+
+
+### Angular GiHub API
+[Search GiThub Users](http://thewhitefox.github.io/Angular-Fundamentals/#/main)
+
+[JavaScript AJAX JSON repo](https://github.com/theWhiteFox/JavaScript-AJAX-JSON)
+
+## Yeah let's code! 
+
+Basic AJAX request
+
+```jsx
+/* @ Stephen O'Connor */
+(function () {
+
+   $.getJSON('data.json', function (data)
+   {
+      var output = '<ul>';
+      $.each(data, function (key, val)
+      {
+         output += '<li>' + val.name + '</li>';
+      });
+
+      output += '</ul>';
+      $('#update').append(output);
+   });
+
+}());
+```
+
+| Reference                               |                                                                                                |
+| :-------------------------------------- | :--------------------------------------------------------------------------------------------- |
+| [Axios](https://github.com/axios/axios) | [digitalocean react axios](https://www.digitalocean.com/community/tutorials/react-axios-react) |
+|[MDN Web API](https://developer.mozilla.org/en-US/docs/Web/API)||
+
+

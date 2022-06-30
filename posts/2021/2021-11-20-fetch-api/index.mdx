@@ -1,0 +1,111 @@
+---
+title: Fetch API webpack
+date: 2021-11-20
+published: true
+cover: ./cover.jpg
+coverCredit: Photo by Chris Ried on Unsplash
+---
+## Why Fetch & Webpack?
+
+Learning how to make HTTP requests using JavaScript(JS) [Fetch API](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API) and build tool [webpack](https://webpack.js.org/). HTTP is a protocol for fetching resources, a way to communicate with a server, two of the most common requests are GET and POST, we will start with the ```get``` request. [theWhiteFox Fetch API Webpack Basics repo](https://github.com/theWhiteFox/Fetch-API-webpack-Basics)
+
+
+Fetch API is a JavaScript Application interface API that makes HTTP requests simpler, cleaner & more logical, 
+using [JS promises](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise). "Essentially, a promise is a returned object to which you attach callbacks, instead of passing callbacks into a function." [Asynchronous JavaScript](https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Asynchronous)
+
+webpack is mainly a JavaScript static file / module bundler to use in the browser installed with [NPM](https://www.npmjs.com/), and convert the modules into static assets.
+
+Fetch API lets see how to use it to make asynchronous HTTP requests.
+
+HTTP Requests with thier Create Read Update Delete (CRUD) equivalent 
+
+| HTTP Verb | CRUD | Entire Collection (e.g. /users)| 	Specific Item (e.g. /user/{id})|
+|:----------|:-----|:-------------------------------|:---------------------------------|
+| POST 	    | Create | 	201 (Created), 'Location' header with link to /users/{id} containing new ID. |	404 (Not Found), 409 (Conflict) if resource already exists..|
+| GET 	    | Read | 	200 (OK), list of users. Use pagination, sorting and filtering to navigate big lists.| 	200 (OK), single user. 404 (Not Found), if ID not found or invalid.|
+| PUT 	    | Update/Replace | 	405 (Method Not Allowed), unless you want to update/replace every resource in the entire collection.| 	200 (OK) or 204 (No Content). 404 (Not Found), if ID not found or invalid.|
+| PATCH 	| Update/Modify | 	405 (Method Not Allowed), unless you want to modify the collection itself. 	200 (OK) or 204 (No Content).| 404 (Not Found), if ID not found or invalid.|
+| DELETE 	| Delete  |	405 (Method Not Allowed), unless you want to delete the whole collection—not often desirable.| 	200 (OK). 404 (Not Found), if ID not found or invalid.|
+
+
+### Yeah let's code! 
+Create a basic fetch function called fetchText, using async await. readme is a local text file. 
+
+```jsx
+async function fetchText() {
+    let response = await fetch('./readme.txt');
+    let data = await response.text();
+    console.log('fetchText: ' + data)
+}
+
+fetchText();
+
+async function fetchText2() {
+    let response = await fetch('./non-existence.txt');
+
+    console.log(response.status); // 404
+    console.log(response.statusText); // Not Found
+
+    if (response.status === 200) {
+        let data = response.text();
+        // handle data
+        console.log('fetchText2: ' + data)
+    }
+}
+
+fetchText2();
+```
+
+webpack 
+
+```js
+const path = require('path');
+
+module.exports = {
+    entry: [
+        "@babel/polyfill",
+        './src/js/app.js',
+        './src/sass/app.scss'
+    ],
+    output: {
+        path: path.resolve(__dirname, 'dist/'),
+        filename: 'js/main.js'
+    },
+    module: {
+        rules: [
+            {
+                test: /\.m?js$/,
+                exclude: /(node_modules|bower_components)/,
+                use: {
+                    loader: 'babel-loader',
+                    options: {
+                    presets: ['@babel/preset-env'],
+                    plugins: ['@babel/plugin-proposal-object-rest-spread']
+                    }
+                }
+            }, {
+                test: /\.scss$/,
+                exclude: /node_modules/,
+                use: [
+                    {
+                        loader: 'file-loader',
+                        options: { outputPath: 'css/', name: '[name].min.css'}
+                    },
+                    'sass-loader'
+                ]
+            }
+        ]
+    },
+    devServer: {
+        contentBase: path.join(__dirname, './'),
+        compress: true,
+        port: 3000
+    }
+};
+
+```
+
+| Further Reading | | 
+|:----------------|:-----|
+|[JavaScript Fetch API](https://www.javascripttutorial.net/javascript-fetch-api/)|[MDN Using promises](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Using_promises)|
+|[freecodecamp most-popular-ways-http-request-in-JS](https://www.freecodecamp.org/news/here-is-the-most-popular-ways-to-make-an-http-request-in-javascript-954ce8c95aaa/)|[ibm http-requests](https://www.ibm.com/docs/en/cics-ts/5.3?topic=protocol-http-requests)|[MDN HTTP Overview](https://developer.mozilla.org/en-US/docs/Web/HTTP/Overview)

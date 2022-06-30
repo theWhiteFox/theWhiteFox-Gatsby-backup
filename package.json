@@ -1,0 +1,63 @@
+{
+  "name": "gatsby-starter-hello-world",
+  "private": true,
+  "description": "A simplified bare-bones starter for Gatsby",
+  "version": "0.1.0",
+  "license": "0BSD",
+  "scripts": {
+    "build": "gatsby build",
+    "dev": "gatsby develop -p 3000 -o",
+    "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md}\"",
+    "start": "npm run develop",
+    "serve": "gatsby serve",
+    "clean": "gatsby clean",
+    "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1"
+  },
+  "dependencies": {
+    "@gatsby-contrib/gatsby-plugin-elasticlunr-search": "^2.4.2",
+    "@mdx-js/mdx": "^1.6.18",
+    "@mdx-js/react": "^1.6.18",
+    "babel-plugin-styled-components": "^1.11.1",
+    "browserslist": "^4.14.3",
+    "gatsby": "^2.24.87",
+    "gatsby-cli": "^2.16.2",
+    "gatsby-image": "^2.4.21",
+    "gatsby-plugin-mdx": "^1.2.40",
+    "gatsby-plugin-purgecss": "^6.1.0",
+    "gatsby-plugin-sharp": "^2.6.43",
+    "gatsby-plugin-styled-components": "^3.3.13",
+    "gatsby-remark-images": "^3.3.40",
+    "gatsby-remark-reading-time": "^1.1.0",
+    "gatsby-source-filesystem": "^2.3.30",
+    "gatsby-transformer-sharp": "^2.5.20",
+    "prism-react-renderer": "^1.1.1",
+    "react": "^16.13.1",
+    "react-burger-menu": "^2.6.13",
+    "react-dom": "^16.13.1",
+    "react-icons": "^4.3.1",
+    "react-live": "^2.2.2",
+    "react-responsive": "^8.2.0",
+    "semantic-ui-css": "^2.4.1",
+    "semantic-ui-react": "^2.0.1",
+    "styled-components": "^5.2.0",
+    "tailwind.macro": "^0.5.10"
+  },
+  "devDependencies": {
+    "autoprefixer": "^10.4.2",
+    "gatsby-plugin-postcss": "^5.9.0",
+    "postcss": "^8.4.7",
+    "prettier": "2.1.1",
+    "tailwindcss": "^3.0.23"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gatsbyjs/gatsby-starter-hello-world.git"
+  },
+  "bugs": {
+    "url": "https://github.com/gatsbyjs/gatsby/issues"
+  },
+  "homepage": "https://github.com/gatsbyjs/gatsby-starter-hello-world#readme",
+  "main": "gatsby-config.js",
+  "keywords": [],
+  "author": "theWhiteFox"
+}

@@ -1,0 +1,177 @@
+---
+title: Teach C#
+date: 2021-10-27
+published: true
+cover: ./cover-c-sharp.jpg
+---
+ 
+What I learned teaching a small class of 20 students how to Design & Build a C# App. 
+'You can lead a horse to water but you can’t make him drink' is a proverb which means that you can give someone an opportunity but not force them to take it.
+Learning while teaching.
+Lessons are here [GitHub Software Design Fundamentals](https://github.com/Stevo5o/Software-Design-Fundamentals)
+
+The following is a lesson plan that I created and taught.
+
+## Developing Software is fun?
+Lets find out by learning to design & build a Windows App in C#.
+Don’t feel intimidated and take a little at a time.
+
+## Tips on learning C#
+As you watch the demos in class, try to follow what has been done and have a go at re-creating the 
+project and the code.  After the demo look back over this lesson plan or talk to class mates or do some 
+research in regards to any questions you might have.  Don’t just mindlessly copy source code from a website 
+or from this lesson plan.  If something is not completely clear, take the time to use me or better still google.
+ 
+Be patient or iot, I began to teach myself programming back in September 2010.  I didn’t get my first real job using 
+C# until June 2013. It took a lot of nights and weekends to learn it well enough to get a job. How long will it 
+take you to learn?  That depends on your level of commitment and your background in software development.  
+However, after going through these lessons and demos, talking to class mates, as well as YouTube videos on.
+
+Find a project to do for a friend, a charity, a small local business.  If you have a project in mind as you begin 
+to learn, it will ```--force``` you to learn things you otherwise might overlook.  Once you are finished, you will 
+inevitably feel ambivalent: you’ll be so proud of what you’ve accomplished, and at the same time you will look 
+back and realize how utterly pathetic that first attempt at programming was.   
+
+## How long will it take me to learn C#? 
+How long it would take me to learn French ?: 
+• 1 day to learn what it is 
+• 1 week to learn it to an infant/elementary level 
+• 1 year to be considered a beginner by professionals 
+• Several years to be considered an experienced professional 
+• Plus there's "deep" knowledge of those subjects which a mere mortal such as you or I will never learn 
+ 
+Then again, plenty of people (most normal people, non-programmers) never learn those subjects, so if you're 
+like "most" people then the answer would be "it would take forever" or "it will never happen". 
+
+## Software Design & Build Fundamentals  
+- Visual Studio Interface 
+- Design Best Practices  
+- Variables and Datatypes 
+- Iteration and Selection Statements 
+
+## The Set-up 
+1. Download and install Visual Studio Community 2013 
+2. Create GitHub account and create a new repository called Csharp-Basics 
+3. Download and install the latest version of GitHub for windows version 7, 8, 8.1 
+4. On your PC in users\username\documents create new vsprojects folder 
+5. Open PowerShell type following text 
+ 
+``` 
+cd git clone https://github.com/Stevo5o/Software-Design-Fundamentals
+cd to clone folder 
+``` 
+
+### Lesson 1 
+HelloWorld windows application. Open Visual Studio select new project. Select Visual C# and 
+Windows form application. In the Windows dialog change name and location to:  
+• Name: HelloWorld 
+• Location: click Browse button navigate to vsprojects\Csharp-Basics folder – GitHub clone 
+• Create new folder Lesson1 
+• Click OK button 
+
+Run debug click start button, this is a basic windows form click x and close. This is a complete windows app, 
+however it does not do anything. Go to C:\Users\username\Documents\VSProjects\ Csharp-
+Basics\Lesson1\HelloWorld\bin\Debug and click HelloWorld.exe 
+ 
+Create a button that once clicked displays a message box that displays Hello World. Go to toolbox select 
+button. Double click button and into Form1.cs type MessageBox.Show("Hello World"); 
+Two tabs code design view and debug app using the start button. 
+
+Solution explorer file description. Shut down reopen visual studio. Looking at Debugging. Set break points to 
+step through each line of code. 
+
+What are Events? “Event Driven Programs” 
+Response to events like open file, exit, new file, print file. Hundreds of events that an app can react to. Double 
+click on the OK button an event handler is created and given a default name. When the event is triggered the 
+end user clicks the button. Event handler event default name button1_Click Curly braces ... { } ... define a 
+bock of code. Events are triggered in an app. App can respond or ignore those events. Write code in Event 
+Handlers to handle events. Code must be written inside of code block defined by curly braces. Methods are the 
+basic building blocks of writing code. An event Handler is a more specific type of a method. 
+ 
+```
+private void button1_Click(object sender, EventArgs e) // event handler 
+{ 
+    MessageBox.Show("Hello World"); // event 
+} 
+```
+
+### Lesson 2  
+Design Best Practices 
+Arrange controls in columns and rows. Labels left input boxes, data entered on the right. Ok Cancel buttons on 
+the right. Use standard fonts and colors. Keep it simple. Use standard, succinct descriptions (names) for 
+controls. Don’t make the user “think”, easy for the user to use. 
+
+Buttons: 
+Allow user to communicate a decision or to trigger some action. 
+ 
+Labels:
+Non-interactive descriptions or text usually displayed on the left-hand side of other controls. 
+ 
+Text Boxes: 
+Allow for unstructured user input. 
+
+Check Boxes:
+Allow for yes /no or on /off type user input. Used together to allow off “Check all that apply” 
+ 
+Combo box:
+Text and list box combination. User can select item in the list, or type in a selection that is not in the list. 
+ 
+Menu strip:
+Add menu to app, select Insert Standard Items. 
+
+Tool strip: 
+Add toolbar to app. Includes progress bars, textboxes, combo boxes & more 
+ 
+Status strip:
+Add status bar to app to provide feedback to the user 
+ 
+Tool Strip Container:
+Hosts other controls like the menu strip, Toll Strip and the Status Strip to provide user app customization. 
+Arrange toolbars top left bottom right 
+
+Tips:
+Make sure the right control is selected before making any changes in the Properties window. 
+Set tab order. Click VIEW and Tab Order click item to make first. 
+Tab Order starts with the control from the left-hand corner logically to the lower right-hand corner. 
+
+### Lesson 3  
+Variables and Datatypes 
+```x = 4 
+y = x + 6
+```
+
+#### What does y equal? 
+Variables represents a space in a computer’s memory that is assigned to store a value. The name of the 
+variable is then used in code to reference the value that is stored in that memory space. Declaring a variable 
+is the act of allocationg space in he computer’s memory for valus of a specific data type and giving the 
+variable name. 
+There are many available data types in C#, including ones that can store strings, dates, numbers, and more.. 
+ 
+#### Three Basic Numeric data Types.. 
+• Interger (int): -2,147,483,648 to +2,147,483,647 
+• Double (double): ±5.0 × 10−324 to ±1.7 × 10308 up to 15 decimal places 
+• Boolean (bool): true or false 
+
+When writing C#, C# is case sensitive. Consider a variable a bucket and the string literal can go into the 
+bucket. 
+
+```
+string hello; // hello is the bucket 
+hello = "hello world"; // string literal goes into the hello bucket 
+MessageBox.Show(hello); // hello var 
+MessageBox.Show("hello"); // string literal  
+
+ 
+// declare two vars 
+string firstTextBox = textBox1.Text; 
+string secondTextBox = textBox2.Text; 
+ 
+label1.Text = firstTextBox + " " + secondTextBox; 
+
+Declare a Variable with the wrong a data type error with discription. 
+
+VS implictyly converts interger to double no loss of data 
+int myValue = 3; // data type integer 
+double myOtherValue; // data type double 
+myOtherValue = myValue; // VS converts from int to double 
+```

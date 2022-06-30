@@ -1,0 +1,259 @@
+---
+title: SQL Fun
+date: 2021-10-15
+published: true
+cover: ./cover-sql.jpg
+---
+
+Teaching a class of 20 students Structured Query Language (SQL - pronounced "ess-que-el") Fun-damentals.
+The following is a lesson plan I wrote and taught.
+
+## Aggregate functions
+
+Perform a calculation on a set of values and return a single value. Except for COUNT, aggregate functions ignore null values. Aggregate functions are frequently used with the GROUP BY clause of the SELECT statement.
+
+Useful aggregate functions:
+
+- AVG() - Returns the average value
+- COUNT() - Returns the number of rows
+- FIRST() - Returns the first value
+- LAST() - Returns the last value
+- MAX() - Returns the largest value
+- MIN() - Returns the smallest value
+- SUM() - Returns the sum
+
+## HAVING
+
+The HAVING clause was added to SQL because the WHERE keyword could not be used with aggregate
+functions.
+
+```
+SELECT Employees.LastName, COUNT(Orders.OrderID) AS NumberOfOrders FROM (Orders
+INNER JOIN Employees
+ON Orders.EmployeeID=Employees.EmployeeID)
+GROUP BY LastName
+HAVING COUNT(Orders.OrderID) > 10;
+
+```
+
+Result:
+
+| LastName | NumberOfOrders |
+| :------- | :------------- |
+| OConnor  | 11             |
+| Henry    | 27             |
+| Chinaski | 14             |
+
+```
+SELECT Employees.LastName, COUNT(Orders.OrderID) AS NumberOfOrders FROM Orders
+INNER JOIN Employees ON Orders.EmployeeID=Employees.EmployeeID WHERE LastName=OConnor OR LastName=Henry GROUP BY LastName HAVING COUNT(Orders.OrderID) > 25;
+```
+
+Result:
+
+| LastName | NumberOfOrders |
+| :------- | :------------- |
+| Henry    | 27             |
+
+### CAST
+
+Converts an expression of one data type to another in SQL Server.
+Syntax for CAST:
+CAST ( expression AS data_type [ ( length ) ] )
+
+Table Student_Score
+Column Name Data Type
+StudentID integer
+First_Name char(20)
+Score float
+
+Table Student_Score Rows
+
+| StudentID | First_Name | Score |
+| :-------- | :--------- | :---- |
+| 1         | Jenny      | 85.2  |
+| 2         | Bob        | 92.5  |
+| 3         | Alice      | 90    |
+| 4         | James      | 120.1 |
+
+### Example 1
+
+SELECT First_Name, CAST(Score AS Integer) Int_Score FROM Student_Score;
+
+Result:
+
+| First_Name | Int_Score |
+| :--------- | :-------- |
+| Jenny      | 85        |
+| Bob        | 92        |
+| Alice      | 90        |
+| James      | 120       |
+
+## Table Relationships
+
+Some tables contain information related to other tables.
+
+### Join
+
+Using the join statement, SQL has powerful tools for extracting related data from multiple tables. Typically
+unique id fields are used to create relationships. Unique id fields work well for creating and managing simple or
+complex relationships between tables. When a result is needed from multiple rows in multiple tables use a join
+query. The easiest way to understand joins is by using a venn diagram. Matching ids The simplest most
+common join is the inner join, this is the default join. Many databases including SQLite do not support a right
+join or full other join. Inter section of the tables, where the tables overlap a condition is met.
+
+### Exercise: Joins
+
+Create a new databasewith the following SQL
+Select both tables
+Create a basic join. ON l.id = r.id; // join on the rows that the condition is met
+All the results from the left column and the inner join.
+
+```
+Join SELECT * FROM Orders INNER JOIN Customers;
+
+SELECT firstName, lastName, orderAmount FROM Customers INNER JOIN Orders ON CustomerID =
+CustomerID;
+
+```
+
+### View
+
+A view stores the select statement as a table.
+
+```
+CREATE VIEW employeeName AS
+SELECT firstName, lastName, FROM emloyees
+Select all from the view.
+SELECT * FROM employeeName
+```
+
+### GRANT statement
+
+Use the GRANT statement to give privileges to a specific user or role, or to all users, to perform actions on
+database objects. You can also use the GRANT statement to grant a role to a user, to PUBLIC, or to another
+role.
+
+`GRANT privilege-type ON [TABLE] { table-Name | view-Name } TO grantees `
+
+Example
+
+To grant the SELECT privilege on table Managers to all users, use the following:
+```
+GRANT SELECT ON TABLE Managers to PUBLIC
+
+From your CLI, run SQLite3.exe create new database.
+
+sqlite>../sqlite3.exe PatsClothesShop.db
+Customer Order
+
+sqlite> CREATE TABLE Customer(
+costumerID INT PRIMARY KEY NOT NULL,
+firstName CHAR(50) NOT NULL,
+lastName CHAR(50) NOT NULL,
+address VARCHAR(200),
+city CHAR(10),
+county CHAR(10),
+creditLimit....... REAL,
+costomerSince DATETIME
+);
+
+sqlite> CREATE TABLE Order(
+orderID INT PRIMARY KEY NOT NULL,
+orderDate DATETIME NOT NULL,
+orderAmount REAL,
+paymentType INT,
+customerID INT NOT NULL
+);
+
+sqlite>.tables
+Customer Order
+
+sqlite>.header on
+sqlite>.mode column
+sqlite>.timer on
+
+```
+
+Insert 5 customers like below
+
+```
+INSERT INTO Customers (firstName, lastName, address, city, county, creditLimit,
+costomerSince)
+VALUES (1, 'Paul', 'Murphy' 32, 'Apt 1', 'Dublin', 15000.00, '2007-01-01 10:00:00' );
+```
+
+XML eXtensible Markup Language
+
+Similar to HTML in it’s use of the tags <></>
+
+XML contains self-describing structured data but omits presentation (formatting) information.
+XML is used to store or transfer data between disparate computing platforms, operating systems, software
+application, etc.
+
+XML is an open standard, as opposed to a proprietary data format.
+Common easily readable format for computer and humans, very portable.
+XML used extensively in the .NET Framework.
+
+XML’s relationship to ADO.NET Datasets
+
+Allows for a disconnected means of working with data, then allows for easy synchronization of changes back to
+the original data store.
+
+• XML is used for syndicated RSS feeds
+• XML is used to store or transfer data between disparate computing  
+• XML contains self-describing
+
+Create an XML file called cars.
+Create a root element /node carcollection, all XML documents have to have a root element.
+Inside the carcollection element /node create two elements called car these are the sub elements
+/children of carcollection.
+Inside the car elements create a sub-element called make.
+It can one or the other but not both or it can contain an attribute.
+Tag name are created by the programmer.
+
+Pretty much free form, however follow a pattern to make it readable for others and yourself.
+A need for consentience valid documents the structure of the XML and follows the rules of XML a well formed
+XML document.
+
+A valid document and well formed.
+
+```
+<carcollection>
+  <car>
+    <make>DeLorean</make>
+    <model>Time Machine</model>
+    <year>1981</year>
+  </car>
+  <car>
+    <make>Cadillac</make>
+    <model>Ecto-1</model>
+    <year>1984</year>
+  </car>
+</carcollection>
+```
+### XML Schema Document
+Using C# and .NET Framework Class Library to open and navigate through an XML file
+Add seven linkLabels and a button
+Save the XML document in the bin /debug folder
+@”cars.xml” is the location of the XML file
+```
+// StreamReader will retrieve the file from the source
+// and will convert it into a stream ready to be processed
+System.IO.StreamReader sr = new System.IO.StreamReader(@"cars.xml");
+
+// XmlTextReader
+System.Xml.XmlTextReader xr = new System.Xml.XmlTextReader(sr);
+
+// XmlDocument
+System.Xml.XmlDocument carCollectionDoc = new System.Xml.XmlDocument();
+
+carCollectionDoc.Load(xr);
+
+// using the InnerText property will give us just the data
+// ... since we are at the entire Document level, it will
+// give us *all* the values (no delimiter).
+linkLabel1.Text = carCollectionDoc.InnerText;
+```
+
+

@@ -1,0 +1,51 @@
+---
+title: Laravel Collections
+date: 2021-03-14T00:00:00.000Z
+published: false
+cover: ./cover.jpg
+coverCredit: Photo by Chris Ried on Unsplash
+---
+## Convenient "Wrappers"
+[PHP Manual ArrayAccess Interface](https://www.php.net/manual/en/class.arrayaccess.php)
+[PHP ArrayObject Class](https://www.php.net/manual/en/class.arrayobject.php)
+```Illuminate\\Support\\Collection``` 
+Implements: ArrayAccess, Countable, IteratorAggregate, JsonSerializable, Arrayable, and Jsonable.
+
+## Array Mimicking
+
+## Array Mechanics
+
+these methods. Because these are “wrapper” functions,
+
+### Yeah let's code! 
+
+```implode()``` filtered and then glued!
+```jsx
+
+    $collectionTest = collect([
+            ['field1' => 11],
+            ['field2' => 12],
+            ['field1' => 13],
+            ['field2' => 14],
+            ['field1' => 15]
+        ])->implode('field1');
+
+        dd($collectionTest); // Result: "111315"
+
+
+```
+
+## Reference
+[Laravel Collections](https://laravel.com/docs/8.x/collections)
+
+[LornaJane Arrayaccess vs Arrayobject](https://lornajane.net/posts/2011/arrayaccess-vs-arrayobject)
+
+[https://laravel-news.com/array_wrap](https://laravel-news.com/array_wrap)
+
+[https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map)
+
+1 http://php.net/manual/en/class.arrayaccess.php
+2 http://php.net/manual/en/class.arrayobject.php
+3 http://www.lornajane.net/posts/2011/arrayaccess- vs- arrayobject 4 http://php.net/manual/en/class.countable.php
+5 http://php.net/manual/en/class.iteratoraggregate.php
+
